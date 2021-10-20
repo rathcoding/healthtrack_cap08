@@ -14,18 +14,16 @@ public class PesoDAO {
 	
 	public void cadastrar (RegPeso peso) {
 		
-		//this.fakeDB.add(peso); // Simula INSERT na tabela de Registro de Pesos
-		
 		PreparedStatement stmt = null;
 		
 		try {
 			conexao = DBManager.obterConexao();
-			String sql = "INSERT INTO T_PESO(CD_PESAGEM, DT_PESAGEM, VL_PESO, CD_USUARIO) VALUES (SQ_PESO.NEXTVAL, ?, ?, ?, ?)";
+			String sql = "INSERT INTO T_HTK_PESO(cd_pesagem, dt_pesagem, vl_peso, cd_usuario) VALUES (?, ?, ?, ?)";
 			stmt = conexao.prepareStatement(sql);
 			stmt.setInt(1, peso.getId());
 			stmt.setDate(2, new java.sql.Date(peso.getData().getTimeInMillis()));
 			stmt.setDouble(3, peso.getPeso());
-			stmt.setInt(1, peso.getCD_usuario());
+			stmt.setInt(4, peso.getCD_usuario());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -42,8 +40,6 @@ public class PesoDAO {
 	
 	public List<RegPeso> getAll(){
 		
-		// Simula um SELECT * na tabela de Registro de Pesos e preparo de lista para retorno
-		
 		List<RegPeso> lista = new ArrayList<RegPeso>();
 		
 		PreparedStatement stmt = null;
@@ -51,17 +47,17 @@ public class PesoDAO {
 		
 		try {
 			conexao = DBManager.obterConexao();
-			stmt = conexao.prepareStatement("SELECT * FROM T_PESO");
+			stmt = conexao.prepareStatement("SELECT * FROM T_HTK_PESO");
 			rs = stmt.executeQuery();
 		
 			while (rs.next()) {
-				int id = rs.getInt("ID");
-				java.sql.Date rawdate = rs.getDate("DATA");
-				Calendar data = Calendar.getInstance();
-				data.setTimeInMillis(rawdate.getTime());
-				double peso = rs.getDouble("PESO");
-				int cd_usuario = rs.getInt("CD_USUARIO");
-				RegPeso pesagem = new RegPeso(id, data, peso, cd_usuario);
+				int cd_pesagem = rs.getInt("cd_pesagem");
+				java.sql.Date rawdate = rs.getDate("dt_pesagem");
+				Calendar dt_pesagem = Calendar.getInstance();
+				dt_pesagem.setTimeInMillis(rawdate.getTime());
+				double vl_peso = rs.getDouble("vl_peso");
+				int cd_usuario = rs.getInt("cd_usuario");
+				RegPeso pesagem = new RegPeso(cd_pesagem, dt_pesagem, vl_peso, cd_usuario);
 				lista.add(pesagem);
 			}
 		} catch (SQLException e) {

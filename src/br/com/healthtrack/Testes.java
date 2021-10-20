@@ -8,6 +8,13 @@ public class Testes {
 
 	public static void main(String[] args) throws ParseException {
 		
+		//insertPeso();
+
+		getAllPeso();
+		
+	}
+	
+	public static void insertPeso() {
 		PesoDAO pesoDAO = new PesoDAO();
 
 		Double quilos = 50.0;
@@ -20,15 +27,16 @@ public class Testes {
 			pesoDAO.cadastrar(peso);
 			data.add(Calendar.DAY_OF_YEAR, 1);
 		}
+	}
+	
+	public static void getAllPeso() {
 		
+		PesoDAO pesoDAO = new PesoDAO();
 		List<RegPeso> pesos = pesoDAO.getAll();
 		
 		for (RegPeso reg: pesos) {
 			System.out.println(reg.toString());			
 		}
-		
 	}
-	
-	
 	
 }

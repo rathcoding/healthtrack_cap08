@@ -1,6 +1,8 @@
 package br.com.healthtrack;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 // Entidade a ser perstida no Banco de Dados
 
@@ -51,8 +53,10 @@ public class RegPeso {
 
 	@Override
 	public String toString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date data = new java.sql.Date(this.getData().getTimeInMillis());
 		return "RegPeso [id=" + this.id + 
-						", data=" + this.data +
+						", data=" + formatter.format(data) +
 						", peso=" + this.peso +
 						", cd_usuario=" + this.cd_usuario + "]";
 	}	
