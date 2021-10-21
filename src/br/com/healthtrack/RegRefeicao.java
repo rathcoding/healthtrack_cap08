@@ -6,16 +6,18 @@ import java.util.Date;
 
 // Entidade a ser persistida no Banco de Dados
 
-public class RegPeso {
+public class RegRefeicao {
 	private int id;
 	private Calendar data;
-	private Double peso;
+	private int calorias;
+	private String descricao;
 	private int cd_usuario;
 	
-	public RegPeso (int id, Calendar data, Double peso, int cd_usuario) {
+	public RegRefeicao (int id, Calendar data, int calorias, String descricao, int cd_usuario) {
 		this.id = id;
 		this.data = data;
-		this.peso = peso;
+		this.calorias = calorias;
+		this.descricao = descricao;
 		this.cd_usuario = cd_usuario;
 	}
 	
@@ -35,12 +37,20 @@ public class RegPeso {
 		return this.data;
 	}
 	
-	public void setPeso (Double peso) {
-		this.peso = peso;
+	public void setCalorias (int calorias) {
+		this.calorias = calorias;
 	}
 	
-	public Double getPeso () {
-		return this.peso;
+	public int getCalorias () {
+		return this.calorias;
+	}
+
+	public void setDescricao (String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public String getDescricao () {
+		return this.descricao;
 	}
 
 	public int getCD_usuario() {
@@ -55,9 +65,10 @@ public class RegPeso {
 	public String toString() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = new java.sql.Date(this.getData().getTimeInMillis());
-		return 	"RegPeso [id=" + this.id + 
+		return 	"RegRefeicao [id=" + this.id + 
 				", data=" + formatter.format(data) +
-				", peso=" + this.peso +
+				", calorias=" + this.calorias +
+				", descricao=" + this.descricao +
 				", cd_usuario=" + this.cd_usuario + "]";
 	}	
 	
