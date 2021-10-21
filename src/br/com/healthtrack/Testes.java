@@ -10,16 +10,16 @@ public class Testes {
 	public static void main(String[] args) throws ParseException {
 		
 		
-		//insertPeso();
+		insertPeso();
 		getAllPeso();
 		
-		//insertRefeicao();
+		insertRefeicao();
 		getAllRefeicao();
 		
-		//insertPressao();
+		insertPressao();
 		getAllPressao();
 
-		//insertExercicio();
+		insertExercicio();
 		getAllExercicio();
 
 	}
@@ -114,7 +114,7 @@ public class Testes {
 		for (int i = 0; i < 10; i++) {
 			Random random = new Random();
 			int rand = random.nextInt(3);		
-			int tipo = rand + 1;				// Tipo: [1] Aerobico, [2] Força, [3] Mobilidade
+			int tipo = rand + 1;				// Tipo: [1] Aerobico, [2] Forï¿½a, [3] Mobilidade
 			int intensidade = rand + 1;			// Intensidade: [1] Leve, [2] Moderado, [3] Pesado
 			String descricao = new String("Exercicio id " + i);
 			RegExercicio exercicio = new RegExercicio(i, data, duracaoMin[rand], tipo, intensidade, descricao, cd_usuario);
